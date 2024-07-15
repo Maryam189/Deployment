@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="form-container">
+                <h2>Input Text</h2>
+                <form action="/predict" method="post">
+                    <textarea name="text" placeholder="Enter text here...">{{ input_text }}</textarea><br><br>
+                    <button type="submit">Summarize</button>
+                </form>
+            </div>
+            <div class="result-container">
+                <h2>Generated Summary</h2>
+                {% if prediction_text %}
+                    <div class="summary-text">
+                        <p>{{ prediction_text }}</p>
+                    </div>
+                {% else %}
+                    <p>No summary generated yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+</body>
+</html>
